@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ subject }} Notes - MCA Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <div class="logo">MN</div>
+            <div>
+                <h2>{{ subject }} Notes</h2>
+                <div class="lead">Text notes and uploaded files for this subject</div>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+            <a class="btn" href="{{ url_for('add_note', subject=subject) }}">Add Note / Upload</a>
+            <a class="btn secondary" href="{{ url_for('home') }}">Back to Subjects</a>
+        </div>
+
+        <section style="margin-top:12px">
+            <h3>Text Notes</h3>
+            {% if notes %}
+                {% for n in notes %}
+                    <div class="note-card">
+                        <div>{{ n }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="lead">No text notes yet. Add one using "Add Note".</p>
+            {% endif %}
+        </section>
+
+        <section style="margin-top:14px">
+            <h3>Uploaded Files</h3>
+            {% if files %}
+                <div class="files-list">
+                    {% for f in files %}
+                        <a class="file-item" href="{{ url_for('uploaded_file', folder=folder_name, filename=f) }}" target="_blank">
+                            <div style="width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#e0f2fe,#c7ddff);display:flex;align-items:center;justify-content:center;font-weight:700">
+                                {{ f.split('.')[-1] | upper }}
+                            </div>
+                            <div>
+                                <div><strong>{{ f }}</strong></div>
+                                <small>Click to open</small>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="lead">No uploaded files yet.</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Home - MCA Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <div class="logo">MN</div>
+            <div>
+                <h1>MCA Notes</h1>
+                <div class="lead">Choose a subject to view or add notes</div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="user-badge">
+                <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#60a5fa,#1e3a8a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700">
+                    {{ student[-2:] }}
+                </div>
+                <div>
+                    <strong>{{ student }}</strong>
+                    <small>Logged in</small>
+                </div>
+            </div>
+
+            <div>
+                <a class="btn ghost" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+
+        <section style="margin-top:16px">
+            <h2 style="margin-bottom:8px">Subjects</h2>
+            <div class="subject-list">
+                {% for display, folder in subject_items %}
+                    <div class="subject">
+                        <h3>{{ display }}</h3>
+                        <p>Folder: <small>{{ folder }}</small></p>
+                        <a class="btn" href="{{ url_for('notes', subject=display) }}">Open Notes</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>

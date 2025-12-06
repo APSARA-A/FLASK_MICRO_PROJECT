@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MCA Notes — Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <div class="logo">MN</div>
+            <div>
+                <h1>MCA Notes Portal</h1>
+                <div class="lead">Secure student note saving app</div>
+            </div>
+        </div>
+
+        {% if msg %}
+            <p class="error center">{{ msg }}</p>
+        {% endif %}
+
+        <form method="post" class="center" autocomplete="off">
+            <input type="text" name="adm_no" placeholder="Admission Number (e.g., M25CA029)" required>
+            <input type="password" name="password" placeholder="Date of Birth (DD-MM-YYYY)" required>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:8px">
+                <button class="btn" type="submit">Login</button>
+                <a class="btn secondary" href="#" onclick="alert('Use one of the sample accounts in the code.')">Help</a>
+            </div>
+        </form>
+
+        <p style="text-align:center;margin-top:12px;color:var(--muted);font-size:13px">
+            Sample accounts: M25CA029 / 11-02-2005
+        </p>
+    </div>
+</body>
+</html>

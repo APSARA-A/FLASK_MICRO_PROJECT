@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Add Note - {{ subject }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <div class="logo">MN</div>
+            <div>
+                <h2>Add Note — {{ subject }}</h2>
+                <div class="lead">Write a text note or upload an image / PDF / .py</div>
+            </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            <textarea name="note" placeholder="Enter your text note (optional)"></textarea>
+
+            <div style="margin-top:8px">
+                <label style="display:block;margin-bottom:6px;color:var(--muted);font-size:13px">Upload file (png, jpg, jpeg, gif, pdf, py)</label>
+                <input type="file" name="file" accept=".png,.jpg,.jpeg,.gif,.pdf,.py">
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+                <button class="btn" type="submit">Save</button>
+                <a class="btn secondary" href="{{ url_for('notes', subject=subject) }}">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
